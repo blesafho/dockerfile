@@ -25,3 +25,5 @@ RUN wget https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-
     && rm -f apache-maven-3.6.3-bin.zip \
     && mv /opt/apache-maven-3.6.3 /opt/maven \
     && ln -s /opt/maven/bin/mvn /usr/bin/mvn
+
+#ENTRYPOINT ["/sbin/tini", "--"]
