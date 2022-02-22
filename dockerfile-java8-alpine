@@ -1,0 +1,27 @@
+FROM openjdk:8-alpine3.9
+
+# required OS packages
+RUN apk add --no-cache \
+    bash \
+    ca-certificates \
+    git \
+    less \
+    net-tools \
+    tzdata \
+    unzip \
+    wget \
+    which \
+    xmlstarlet \
+    tini
+
+# set timezone
+ENV TZ Asia/Jakarta
+
+# download & unpack maven
+RUN mkdir -p /opt
+WORKDIR /opt
+RUN wget https://downloads.apache.org/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.zip \
+    && unzip apache-maven-3.6.3-bin.zip \
+    && rm -f apache-maven-3.6.3-bin.zip \
+    && mv /opt/apache-maven-3.6.3 /opt/maven \
+    && ln -s /opt/maven/bin/mvn /usr/bin/mvn
